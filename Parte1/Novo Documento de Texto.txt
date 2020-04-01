@@ -1,0 +1,31 @@
+mudar datas para document
+remover baseline
+confidence level - remover da equipa
+
+Mudar forma de associar Doc a Equipa/Worker
+
+Equipa -> Docu
+
+
+
+Worker associ a Doc
+Retirar Equipa
+Dar a Worker ligação a doc, permissoes e papel assumido
+Pode ter mais do que 1 papel (coord. e membro de equipa)
+Permissões associadas ao papel de cada worker
+
+class associação de Worker e Doc para Papel no Doc.
+
+5 coisas:
+1. Remover BaseLine, 
+
+2. adicionar datas a Document
+
+4. Remover Team
+
+3. Remover ConfidenceLevel
+
+5. Classe de Relação entre Worker e Document
+
+Perguntar Tony : Document-Worker -> Do lado do Document
+				1 ou * ?

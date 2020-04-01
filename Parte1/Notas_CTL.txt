@@ -1,0 +1,27 @@
+- Pq duas associações com cor diferente (castanho)?
+
+* Contexto
+Não percebi bem o que é o Type.
+	R: Tipo de Documento, Especificação técnica, ATA, Desenho. Software...
+
+* Classes
+x Porque não criaram um CheckIn para os uploads? Associar um save a um CheckOut é estranho.
+x Request devia estar como classe da associação entre Company e Document.
+
+* Atributos
+- Pq que em Revision, precisam de order? A existir é drrivado porque se consegue determinar pela ordenação das datas, certo?
+	R: Order alterado para version. Explicação em StarUML. Versão personalizada do Document != ID.
+- last_modification_date em Type não é derivado? Não se depreende pelos Checkin?´	
+	R: Razão da pergunta deve derivar da observação em "* Contexto" -> Quando já não se fazem Projetos de um certo Type, 
+		Um Worker altera o Type, modificando o status, (se necessário as remarks), a data da modificação é atualizada
+
+* Associações
+- Os checkIn e checkOut não deviam estar associados a Files?
+	R: Não, os Files terão as suas dependencias entre si. Para não perturbar isso faz-se checkout ao Document
+
+* Multiplicidades
+x Um CheckOut pode ser feito por muitos trabalhadores?
+x Um CompanyRole só pode ter 1 worker?
+
+* Restrições
+- sem restrições

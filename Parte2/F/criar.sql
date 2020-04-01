@@ -1,0 +1,151 @@
+DROP TABLE IF EXISTS Company;
+DROP TABLE IF EXISTS Document;
+DROP TABLE IF EXISTS Language;
+DROP TABLE IF EXISTS File;
+DROP TABLE IF EXISTS DocAttribute;
+DROP TABLE IF EXISTS Type;
+DROP TABLE IF EXISTS Worker;
+DROP TABLE IF EXISTS CompanyRole;
+DROP TABLE IF EXISTS Revision;
+DROP TABLE IF EXISTS RevisionAttribute;
+DROP TABLE IF EXISTS Stated;
+DROP TABLE IF EXISTS DocPossesses;
+DROP TABLE IF EXISTS RevPossesses;
+DROP TABLE IF EXISTS Belongs;
+DROP TABLE IF EXISTS Modified;
+DROP TABLE IF EXISTS Request;
+DROP TABLE IF EXISTS ProjectRole;
+DROP TABLE IF EXISTS CheckOut;
+DROP TABLE IF EXISTS CheckIn;
+
+CREATE TABLE Company (
+	Cname 		VARCHAR2(50),
+	NIF		INTEGER,
+	address		TEXT,
+	CONSTRAINT company_pk PRIMARY KEY (NIF)
+);
+CREATE TABLE Document (
+	docID		INTEGER PRIMARY KEY,
+	dNAME		VARCHAR2(50) NOT NULL,
+	date_ini	DATE,
+	date_fin	DATE,
+	type		VARCHAR2(50), 
+	CONSTRAINT document_type_fk FOREIGN KEY (type) REFERENCES Type(Tname),
+	CONSTRAINT checkDiDf CHECK(date_ini<date_fin OR date_fin=NULL)
+);
+CREATE TABLE Language (
+	Lname		VARCHAR2(50),
+	CONSTRAINT language_pk PRIMARY KEY (Lname)
+);
+CREATE TABLE File (
+	Fname		VARCHAR2(50),
+	size		FLOAT,
+	extension	TEXT,
+	docID		INTEGER,
+	CONSTRAINT file_pk PRIMARY KEY (Fname), 
+	CONSTRAINT file_doc_fk FOREIGN KEY (docID) REFERENCES Document(docID),
+	CONSTRAINT checkFSize CHECK(size >=0)
+);
+CREATE TABLE DocAttribute (
+	DAname	VARCHAR2(50),
+	DAvalue	TEXT,
+	CONSTRAINT docAttribute_pk PRIMARY KEY (DAname) 
+);
+CREATE TABLE Type (
+	Tname		VARCHAR2(50),
+	last_mod_date	DATE,
+	status		INTEGER,
+	remarks		TEXT,
+	CONSTRAINT type_pk PRIMARY KEY (Tname)
+);
+CREATE TABLE Worker (
+	WID		INTEGER PRIMARY KEY,
+	Wname		TEXT NOT NULL
+);
+CREATE TABLE CompanyRole (
+	CRname	VARCHAR2(50),
+	CONSTRAINT companyRole_pk PRIMARY KEY (CRname)
+);
+CREATE TABLE Revision (
+	revID		INTEGER PRIMARY KEY,	
+	version		TEXT,
+	date		DATE
+);
+CREATE TABLE RevisionAttribute (
+	RAname		VARCHAR2(50),
+	RAvalue		TEXT,
+	CONSTRAINT revisionAttribute_pk PRIMARY KEY (RAname)
+);
+CREATE TABLE Stated (
+	Lname		VARCHAR2(50),
+	DocID		INTEGER,
+	CONSTRAINT stated_fk1 FOREIGN KEY (Lname) REFERENCES Language(Lname),
+	CONSTRAINT stated_fk2 FOREIGN KEY (DocID) REFERENCES Document(docID),
+	CONSTRAINT stated_pk PRIMARY KEY(Lname,DocID)
+);
+CREATE TABLE DocPossesses (
+	DAname		VARCHAR2(50),
+	DocID		INTEGER,
+	CONSTRAINT docPossesses_fk1 FOREIGN KEY (DAname) REFERENCES DocAttribute(DAname),
+	CONSTRAINT docPossesses_fk2 FOREIGN KEY (DocID) REFERENCES Document(docID),
+	CONSTRAINT docPossesses_pk PRIMARY KEY(DAname,DocID)
+);
+CREATE TABLE RevPossesses (
+	Rname 		VARCHAR2(50),
+	DocID		INTEGER,
+	CONSTRAINT revPossesses_fk1 FOREIGN KEY (Rname) REFERENCES RevAttribute(Rname),
+	CONSTRAINT revPossesses_fk2 FOREIGN KEY (DocID) REFERENCES Document(docID),
+	CONSTRAINT revPossesses_pk PRIMARY KEY(Rname,DocID)
+);
+CREATE TABLE Belongs (
+	WID		INTEGER,
+	CRname		VARCHAR2(50),
+	CONSTRAINT belongs_fk1 FOREIGN KEY (WID) REFERENCES Worker(WID),
+	CONSTRAINT belongs_fk2 FOREIGN KEY (CRname) REFERENCES CompanyRole(CRname),
+	CONSTRAINT belongs_pk PRIMARY KEY(WID,CRname)
+);
+CREATE TABLE Modified (
+	Tname		VARCHAR2(50),
+	WID		INTEGER,
+	CONSTRAINT modified_fk1 FOREIGN KEY (Tname) REFERENCES Type(Tname),
+	CONSTRAINT modified_fk2 FOREIGN KEY (WID) REFERENCES Worker(WID),
+	CONSTRAINT modified_pk PRIMARY KEY(Tname,WID)
+);
+CREATE TABLE Request (
+	docID		INTEGER,
+	Cname		VARCHAR2(50),
+	RID		INTEGER,
+	status		TEXT,
+	propose_date	DATE NOT NULL,
+	CONSTRAINT request_fk1 FOREIGN KEY (docID) REFERENCES Document(DocID),
+	CONSTRAINT request_fk2 FOREIGN KEY (Cname) REFERENCES Company(Cname),
+	CONSTRAINT request_pk PRIMARY KEY(docID)
+);
+CREATE TABLE ProjectRole (
+	docID		INTEGER,
+	WID		INTEGER,
+	PRname		VARCHAR2(50),
+	CONSTRAINT projectRole_fk1 FOREIGN KEY (docID) REFERENCES Document(DocID),
+	CONSTRAINT projectRole_fk2 FOREIGN KEY (WID) REFERENCES Worker(WID),
+	CONSTRAINT projectRole_pk PRIMARY KEY(docID,WID)
+	
+);
+CREATE TABLE CheckOut (
+	revID		INTEGER,
+	WID		INTEGER,
+	COID		INTEGER,
+	COdate		DATE NOT NULL,
+	CONSTRAINT checkOut_fk1 FOREIGN KEY (revID) REFERENCES Revision(revID),
+	CONSTRAINT checkOut_fk2 FOREIGN KEY (WID) REFERENCES Worker(WID),
+	CONSTRAINT checkOut_pk PRIMARY KEY(revID,WID)
+);
+CREATE TABLE CheckIn (
+	revID		INTEGER,
+	WID		INTEGER,
+	CIID		INTEGER,
+	CIdate		DATE NOT NULL,
+	remarks		TEXT,
+	CONSTRAINT checkIn_fk1 FOREIGN KEY (revID) REFERENCES Revision(revID),
+	CONSTRAINT checkIn_fk2 FOREIGN KEY (WID) REFERENCES Worker(WID),
+	CONSTRAINT checkIn_pk PRIMARY KEY(revID,WID)
+);

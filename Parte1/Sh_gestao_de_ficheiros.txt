@@ -1,0 +1,91 @@
+Sistema de Gestão Documental
+
+tbshdocs : documento  (conjunto de ficheiro )
+	- docid PK	(ID único do documento)
+	- name		(nome do documento, e.g caderno de encargos)
+	- type		(tipo do documento, e.g.ata, desenho, especificação técnica)
+	- tobeapprv - não é utilizado
+	- conflevel 	(nivel de confidencialidade, publico, privado - alto, médio, baixo)
+	- revserid 	(id do tipo de revisão - e.g. 1.0, 1.1 / A-B)
+	- docnumber 	(numero de documento)
+	- refaext 	(ref. externa - nº de documento para cliente)
+	- team		(ID para grupo de pessoas - + tabelas necessárias)
+	- owner		(Responsável pelo documento - ID para tabela de Users)
+	- company	(companhia a que está associado o doc - relaciona com conflevel - tabelas para company?)
+	- remarks ?	(campo de texto livre para documento - notas)
+	
+
+doctypes : tipo doc.
+	- type PK	(tipo do documento, e.g.ata, desenho, especificação técnica)
+	- desc  	(rip)
+	- remarks ?	(rip)
+	- modifiedby	(ultima pessoa que modificou a tabela)
+	- modifdate	(data da ultima modificação da tabela)
+	- status	(ativo / inativo)
+	- unitext ?	(código multiling - idenficador do type para ir buscar traduções)
+	- unitextrem ?	(unitext remarks)
+
+typescomp : ?
+	- company FK	(companhia)
+	- type FK	(tipos de documentos disponiveis para a companhia)
+
+check : checkout - para modificar documento
+	- docid PK	(ID único do documento)
+	- userid FK	(ID único do User)
+	- revorder	(revision order)
+	- type		(tipo do documento ou do check?)
+	- createdate	(data do check)
+	- remarks 	(notas)
+
+docattr : document attributes 
+	- docid		(ID único do documento)
+	- attrid	(int - id do atributo)
+	- field 	(referencia o atributo - assunto, ordem de venda ..)
+	- value 	(valor do atributo)
+	
+docrevlc: Processos de aprovação ---
+	- docid		(ID único do documento)
+	- revorder	(revision order)
+	- status	(também em doctypes)(Quais são as opções ?)
+	- wfid		?
+
+docrevs : document revisions
+	- docid	PK	(ID único do documento)
+	- revorder	(int para revision)
+	- revdate	(revision date)
+	- apprvdate	(approved date)
+	- status	(draft, aprroved, rejected)
+	- createdby	(nome de pessoa que criou)
+	- createon	(data em que foi criado)
+	- modifiedby	(nome da ultima pessoa que modificou)
+	- modifieddate	(data da ultima modificação)
+	- maxrevorder	(float ultima revisão aprovada)
+
+docrevattr : document revision attributes
+	- docid		(ID único do documento)
+	- attrid	(ID único de attributo)
+	- revorder	(revision order)
+	- field 	(referencia o atributo - assunto, ordem de venda ..)
+	- value 	(valor do atributo)
+	
+
+bldoc : baseline document
+	- blid PK	(Baseline ID)
+	- seqn		(sequence number ?)
+	- docid		(ID único do documento)
+	- revorder	(revision order)
+	- modifiedby	(nome da ultima pessoa que modificou)
+	- modifdate	(data da ultima modificação)
+	- createdate	(data de criação da baseline ?)
+	- ssdt		?
+	- sfdt		?
+	- status	(quais são as opções?)
+	- approver	(app revision over ?)
+	- remarks	?
+
+baseline : baseline ?
+	- blid		(Baseline ID)
+	- desc		(descrição)
+	- unitext	?
+	- type		(e.g product revision/deliverable, revison definition)
+	- refaid	
