@@ -55,8 +55,13 @@ INSERT INTO Type (Tname, status, remarks) VALUES ("Tax Evasion Aid", "Inactive",
 INSERT INTO Type (Tname, status, remarks) VALUES ("Market Study", "Active", "Data analysis insight on market performance of a product.");
 INSERT INTO Type (Tname, status, remarks) VALUES ("Digital Image Design", "Inactive", "Personalized branding and digital imagery for your brand.");
 
+INSERT INTO Status (sDescription) VALUES ("On-going");
+INSERT INTO Status (sDescription) VALUES ("Complete");
+INSERT INTO Status (sDescription) VALUES ("Delayed");
+INSERT INTO Status (sDescription) VALUES ("In review");
+
 INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("Market Study Continente Online", '2019-10-10', '2020-1-5', 4);
-INSERT INTO Request (docID, CID, status, propose_date) VALUES (1, 1, "Complete", '2019-10-10');
+INSERT INTO Request (docID, CID, SID, propose_date) VALUES (1, 1, 2, '2019-10-10');
 INSERT INTO File VALUES ('/files/MCH/Market_S_Continente_Online/brief.txt', 18000, 'txt', 1);
 INSERT INTO File VALUES ('/files/MCH/Market_S_Continente_Online/data_collection.xml', 27854446, 'xml', 1);
 INSERT INTO File VALUES ('/files/MCH/Market_S_Continente_Online/report_pt.pdf', 35466, 'pdf', 1);
@@ -71,7 +76,7 @@ INSERT INTO ProjectRole VALUES (1, 5, 'Main Marketing Specialist');
 INSERT INTO ProjectRole VALUES (1, 7, 'Data Analyst');
 
 INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("Talkdesk Financial Evaluation", '2020-2-17', '2020-3-17', 1);
-INSERT INTO Request (docID, CID, status, propose_date) VALUES (2, 3, "Delayed", '2020-2-17');
+INSERT INTO Request (docID, CID, SID, propose_date) VALUES (2, 3, 3, '2020-2-17');
 INSERT INTO File VALUES ('/files/Talkdesk/Fin_Eval_Talkdesk/brief.txt', 18000, 'txt', 2);
 INSERT INTO File VALUES ('/files/Talkdesk/Fin_Eval_Talkdesk/financial_results.xlsx', 3689547, 'xlsx', 2);
 INSERT INTO File VALUES ('/files/Talkdesk/Fin_Eval_Talkdesk/bank_statements.xml', 547989, 'xml', 2);
@@ -88,7 +93,7 @@ INSERT INTO DocAttribute VALUES ('Under NDA', 'All work developed under this doc
 INSERT INTO DocPossesses VALUES ('Under NDA', 2);
 
 INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("SB Group New Bottling Line", '2019-9-1', '2019-10-31', 2);
-INSERT INTO Request (docID, CID, status, propose_date) VALUES (3, 5, "Complete", '2019-9-1');
+INSERT INTO Request (docID, CID, SID, propose_date) VALUES (3, 5, 3, '2019-9-1');
 INSERT INTO File VALUES ('/files/SBG/Tech_Mock_SBG_BottlingLine/brief.txt', 18000, 'txt', 3);
 INSERT INTO File VALUES ('/files/SBG/Tech_Mock_SBG_BottlingLine/prod_line_model.cad', 54786954, 'cad', 3);
 INSERT INTO File VALUES ('/files/SBG/Tech_Mock_SBG_BottlingLine/prod_line_module1.cad', 65478, 'cad', 3);
