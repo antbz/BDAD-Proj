@@ -50,9 +50,10 @@ CREATE TABLE File (
 	CONSTRAINT checkFSize CHECK(size >=0)
 );
 CREATE TABLE DocAttribute (
+	DAID	INTEGER,
 	DAname	VARCHAR2(50),
 	DAvalue	TEXT,
-	CONSTRAINT docAttribute_pk PRIMARY KEY (DAname) 
+	CONSTRAINT docAttribute_pk PRIMARY KEY (DAID) 
 );
 CREATE TABLE Type (
 	TID			INTEGER,
@@ -89,11 +90,11 @@ CREATE TABLE Stated (
 	CONSTRAINT stated_pk PRIMARY KEY(LID,DocID)
 );
 CREATE TABLE DocPossesses (
-	DAname		VARCHAR2(50),
+	DAID		INTEGER,
 	DocID		INTEGER,
-	CONSTRAINT docPossesses_fk1 FOREIGN KEY (DAname) REFERENCES DocAttribute(DAname),
+	CONSTRAINT docPossesses_fk1 FOREIGN KEY (DAID) REFERENCES DocAttribute(DAID),
 	CONSTRAINT docPossesses_fk2 FOREIGN KEY (DocID) REFERENCES Document(docID),
-	CONSTRAINT docPossesses_pk PRIMARY KEY(DAname,DocID)
+	CONSTRAINT docPossesses_pk PRIMARY KEY(DAID,DocID)
 );
 CREATE TABLE RevPossesses (
 	Rname 		VARCHAR2(50),

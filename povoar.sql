@@ -60,6 +60,9 @@ INSERT INTO Status (sDescription) VALUES ("Complete");
 INSERT INTO Status (sDescription) VALUES ("Delayed");
 INSERT INTO Status (sDescription) VALUES ("In review");
 
+INSERT INTO DocAttribute (DAname, DAvalue) VALUES ('Under NDA', 'All work developed under this document is under a Non-Disclosure Agreement.');
+INSERT INTO DocAttribute (DAname, DAvalue) VALUES ('Time Critical', 'Document is time critical, delays should be avoided at all costs');
+
 INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("Market Study Continente Online", '2019-10-10', '2020-1-5', 4);
 INSERT INTO Request (docID, CID, SID, propose_date) VALUES (1, 1, 2, '2019-10-10');
 INSERT INTO File VALUES ('/files/MCH/Market_S_Continente_Online/brief.txt', 18000, 'txt', 1);
@@ -89,8 +92,7 @@ INSERT INTO ProjectRole VALUES (2, 10, 'Owner & Main Engineer');
 INSERT INTO ProjectRole VALUES (2, 6, 'Main Financial Analyst');
 INSERT INTO ProjectRole VALUES (2, 2, 'Main Lawyer');
 INSERT INTO ProjectRole VALUES (2, 7, 'Main Data Analyst');
-INSERT INTO DocAttribute VALUES ('Under NDA', 'All work developed under this document is under a Non-Disclosure Agreement.');
-INSERT INTO DocPossesses VALUES ('Under NDA', 2);
+INSERT INTO DocPossesses VALUES (1, 2);
 
 INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("SB Group New Bottling Line", '2019-9-1', '2019-10-31', 2);
 INSERT INTO Request (docID, CID, SID, propose_date) VALUES (3, 5, 3, '2019-9-1');
@@ -109,9 +111,8 @@ INSERT INTO ProjectRole VALUES (3, 11, 'Owner & Main Engineer');
 INSERT INTO ProjectRole VALUES (3, 10, 'Engineer');
 INSERT INTO ProjectRole VALUES (3, 9, 'Production Engineer');
 INSERT INTO ProjectRole VALUES (3, 12, 'Engineer');
-INSERT INTO DocAttribute VALUES ('Time Critical', 'Document is time critical, delays should be avoided at all costs');
-INSERT INTO DocPossesses VALUES ('Under NDA', 3);
-INSERT INTO DocPossesses VALUES ('Time Critical', 3);
+INSERT INTO DocPossesses VALUES (1, 3);
+INSERT INTO DocPossesses VALUES (2, 3);
 
 -- INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("Talkdesk Financial Evaluation", '2020-2-17', '2020-3-17', "Financial Evaluation");
 -- INSERT INTO Request (docID, Cname, status, propose_date) VALUES (2, "Talkdesk Inc. Portugal , Unipessoal Lda", "Delayed", '2020-2-17');
