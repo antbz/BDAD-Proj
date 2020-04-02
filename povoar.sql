@@ -35,6 +35,10 @@ INSERT INTO CompanyRole (CRname) VALUES ("Data Analyst");
 INSERT INTO CompanyRole (CRname) VALUES ("Graphic Designer");
 INSERT INTO CompanyRole (CRname) VALUES ("Marketing Specialist");
 
+INSERT INTO ProjectRole (PRname) VALUES ('Collaborator');
+INSERT INTO ProjectRole (PRname) VALUES ('Adviser');
+INSERT INTO ProjectRole (PRname) VALUES ('Reviewer');
+
 INSERT INTO Belongs VALUES (1, 7);
 INSERT INTO Belongs VALUES (2, 5);
 INSERT INTO Belongs VALUES (3, 3);
@@ -63,7 +67,7 @@ INSERT INTO Status (sDescription) VALUES ("In review");
 INSERT INTO DocAttribute (DAname, DAvalue) VALUES ('Under NDA', 'All work developed under this document is under a Non-Disclosure Agreement.');
 INSERT INTO DocAttribute (DAname, DAvalue) VALUES ('Time Critical', 'Document is time critical, delays should be avoided at all costs');
 
-INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("Market Study Continente Online", '2019-10-10', '2020-1-5', 4);
+INSERT INTO Document (dNAME, date_ini, date_fin, type, ownerID) VALUES ("Market Study Continente Online", '2019-10-10', '2020-1-5', 4, 9);
 INSERT INTO Request (docID, CID, SID, propose_date) VALUES (1, 1, 2, '2019-10-10');
 INSERT INTO File VALUES ('/files/MCH/Market_S_Continente_Online/brief.txt', 18000, 'txt', 1);
 INSERT INTO File VALUES ('/files/MCH/Market_S_Continente_Online/data_collection.xml', 27854446, 'xml', 1);
@@ -73,12 +77,12 @@ INSERT INTO File VALUES ('/files/MCH/Market_S_Continente_Online/analyse.py', 175
 INSERT INTO File VALUES ('/files/MCH/Market_S_Continente_Online/analyse_out.csv', 275655, 'csv', 1);
 INSERT INTO Stated VALUES (2, 1);
 INSERT INTO Stated VALUES (1, 1);
-INSERT INTO ProjectRole VALUES (1, 4, 'Main Data Analyst');
-INSERT INTO ProjectRole VALUES (1, 9, 'Owner & Main Engineer');
-INSERT INTO ProjectRole VALUES (1, 5, 'Main Marketing Specialist');
-INSERT INTO ProjectRole VALUES (1, 7, 'Data Analyst');
+INSERT INTO WorkerHasProjRole VALUES (1, 4, 1);
+INSERT INTO WorkerHasProjRole VALUES (1, 9, 1);
+INSERT INTO WorkerHasProjRole VALUES (1, 5, 2);
+INSERT INTO WorkerHasProjRole VALUES (1, 7, 3);
 
-INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("Talkdesk Financial Evaluation", '2020-2-17', '2020-3-17', 1);
+INSERT INTO Document (dNAME, date_ini, date_fin, type, ownerID) VALUES ("Talkdesk Financial Evaluation", '2020-2-17', '2020-3-17', 1, 10);
 INSERT INTO Request (docID, CID, SID, propose_date) VALUES (2, 3, 3, '2020-2-17');
 INSERT INTO File VALUES ('/files/Talkdesk/Fin_Eval_Talkdesk/brief.txt', 18000, 'txt', 2);
 INSERT INTO File VALUES ('/files/Talkdesk/Fin_Eval_Talkdesk/financial_results.xlsx', 3689547, 'xlsx', 2);
@@ -88,13 +92,13 @@ INSERT INTO File VALUES ('/files/Talkdesk/Fin_Eval_Talkdesk/analyse.py', 17560, 
 INSERT INTO File VALUES ('/files/Talkdesk/Fin_Eval_Talkdesk/analyse_out.csv', 279675, 'csv', 2);
 INSERT INTO Stated VALUES (2, 2);
 INSERT INTO Stated VALUES (1, 2);
-INSERT INTO ProjectRole VALUES (2, 10, 'Owner & Main Engineer');
-INSERT INTO ProjectRole VALUES (2, 6, 'Main Financial Analyst');
-INSERT INTO ProjectRole VALUES (2, 2, 'Main Lawyer');
-INSERT INTO ProjectRole VALUES (2, 7, 'Main Data Analyst');
+INSERT INTO WorkerHasProjRole VALUES (2, 10, 1);
+INSERT INTO WorkerHasProjRole VALUES (2, 6, 1);
+INSERT INTO WorkerHasProjRole VALUES (2, 2, 3);
+INSERT INTO WorkerHasProjRole VALUES (2, 7, 1);
 INSERT INTO DocPossesses VALUES (1, 2);
 
-INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("SB Group New Bottling Line", '2020-3-1', '2019-4-31', 2);
+INSERT INTO Document (dNAME, date_ini, date_fin, type, ownerID) VALUES ("SB Group New Bottling Line", '2020-3-1', '2019-4-31', 2, 11);
 INSERT INTO Request (docID, CID, SID, propose_date) VALUES (3, 5, 1, '2020-3-1');
 INSERT INTO File VALUES ('/files/SBG/Tech_Mock_SBG_BottlingLine/brief.txt', 18000, 'txt', 3);
 INSERT INTO File VALUES ('/files/SBG/Tech_Mock_SBG_BottlingLine/prod_line_model.cad', 54786954, 'cad', 3);
@@ -106,15 +110,15 @@ INSERT INTO File VALUES ('/files/SBG/Tech_Mock_SBG_BottlingLine/highlights_manda
 INSERT INTO File VALUES ('/files/SBG/Tech_Mock_SBG_BottlingLine/production_projections.xlsx', 19664, 'xlsx', 3);
 INSERT INTO Stated VALUES (6, 3);
 INSERT INTO Stated VALUES (1, 3);
-INSERT INTO ProjectRole VALUES (3, 1, 'Main Graphic Designer');
-INSERT INTO ProjectRole VALUES (3, 11, 'Owner & Main Engineer');
-INSERT INTO ProjectRole VALUES (3, 10, 'Engineer');
-INSERT INTO ProjectRole VALUES (3, 9, 'Production Engineer');
-INSERT INTO ProjectRole VALUES (3, 12, 'Engineer');
+INSERT INTO WorkerHasProjRole VALUES (3, 1, 1);
+INSERT INTO WorkerHasProjRole VALUES (3, 11, 1);
+INSERT INTO WorkerHasProjRole VALUES (3, 10, 1);
+INSERT INTO WorkerHasProjRole VALUES (3, 9, 1);
+INSERT INTO WorkerHasProjRole VALUES (3, 12, 3);
 INSERT INTO DocPossesses VALUES (1, 3);
 INSERT INTO DocPossesses VALUES (2, 3);
 
-INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("Lidl Fraud Assistance", '2019-11-1', '2019-12-5', 3);
+INSERT INTO Document (dNAME, date_ini, date_fin, type, ownerID) VALUES ("Lidl Fraud Assistance", '2019-11-1', '2019-12-5', 3, 3);
 INSERT INTO Request (docID, CID, SID, propose_date) VALUES (4, 2, 2, '2020-3-1');
 INSERT INTO File VALUES ('/files/Lidl/Tax_Fraud_LIDL_2019/brief.txt', 18000, 'txt', 4);
 INSERT INTO File VALUES ('/files/Lidl/Tax_Fraud_LIDL_2019/legal_notes.docx', 32564, 'docx', 4);
@@ -124,14 +128,14 @@ INSERT INTO File VALUES ('/files/Lidl/Tax_Fraud_LIDL_2019/report_sum_ger.pdf', 1
 INSERT INTO File VALUES ('/files/Lidl/Tax_Fraud_LIDL_2019/report_pt.pdf', 38476, 'pdf', 4);
 INSERT INTO Stated VALUES (4, 4);
 INSERT INTO Stated VALUES (1, 4);
-INSERT INTO ProjectRole VALUES (4, 3, 'Owner');
-INSERT INTO ProjectRole VALUES (4, 8, 'Contributer');
-INSERT INTO ProjectRole VALUES (4, 6, 'Contributor');
-INSERT INTO ProjectRole VALUES (4, 2, 'Contributor');
-INSERT INTO ProjectRole VALUES (4, 10, 'Reviewer');
+INSERT INTO WorkerHasProjRole VALUES (4, 3, 1);
+INSERT INTO WorkerHasProjRole VALUES (4, 8, 1);
+INSERT INTO WorkerHasProjRole VALUES (4, 6, 1);
+INSERT INTO WorkerHasProjRole VALUES (4, 2, 1);
+INSERT INTO WorkerHasProjRole VALUES (4, 10, 3);
 INSERT INTO DocPossesses VALUES (1, 4);
 
-INSERT INTO Document (dNAME, date_ini, date_fin, type) VALUES ("Efacec Rebranding", '2020-3-14', '2020-4-10', 5);
+INSERT INTO Document (dNAME, date_ini, date_fin, type, ownerID) VALUES ("Efacec Rebranding", '2020-3-14', '2020-4-10', 5, 1);
 INSERT INTO Request (docID, CID, SID, propose_date) VALUES (5, 4, 4, '2020-3-14');
 INSERT INTO File VALUES ('/files/Efacec/DID_Efacec_2020_Rebrand/brief.txt', 18000, 'txt', 5);
 INSERT INTO File VALUES ('/files/Efacec/DID_Efacec_2020_Rebrand/logo.svg', 25895, 'svg', 5);
@@ -139,6 +143,6 @@ INSERT INTO File VALUES ('/files/Efacec/DID_Efacec_2020_Rebrand/banner.svg', 654
 INSERT INTO File VALUES ('/files/Efacec/DID_Efacec_2020_Rebrand/rollup.svg', 53266, 'svg', 5);
 INSERT INTO File VALUES ('/files/Efacec/DID_Efacec_2020_Rebrand/digital_ad.js', 16547, 'js', 5);
 INSERT INTO Stated VALUES (1, 5);
-INSERT INTO ProjectRole VALUES (5, 1, 'Owner');
-INSERT INTO ProjectRole VALUES (5, 5, 'Contributer');
-INSERT INTO ProjectRole VALUES (5, 11, 'Reviewer');
+INSERT INTO WorkerHasProjRole VALUES (5, 1, 1);
+INSERT INTO WorkerHasProjRole VALUES (5, 5, 1);
+INSERT INTO WorkerHasProjRole VALUES (5, 11, 3);
