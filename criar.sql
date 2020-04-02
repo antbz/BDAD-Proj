@@ -73,35 +73,39 @@ CREATE TABLE CompanyRole (
 	CONSTRAINT companyRole_pk PRIMARY KEY (CRID)
 );
 CREATE TABLE Revision (
-	revID		INTEGER PRIMARY KEY,	
+	docID		INTEGER,
+	revID		INTEGER,	
 	version		TEXT,
-	date		DATE
+	date		DATE,
+	CONSTRAINT revision_fk FOREIGN KEY (docID) REFERENCES Document(docID),
+	CONSTRAINT revision_pk PRIMARY KEY (revID)
 );
 CREATE TABLE RevisionAttribute (
-	RAname		VARCHAR2(50),
+	RAID		INTEGER,
+	RAname		TEXT,
 	RAvalue		TEXT,
-	CONSTRAINT revisionAttribute_pk PRIMARY KEY (RAname)
+	CONSTRAINT revisionAttribute_pk PRIMARY KEY (RAID)
 );
 CREATE TABLE Stated (
 	LID			INTEGER,
-	DocID		INTEGER,
+	docID		INTEGER,
 	CONSTRAINT stated_fk1 FOREIGN KEY (LID) REFERENCES Language(LID),
-	CONSTRAINT stated_fk2 FOREIGN KEY (DocID) REFERENCES Document(docID),
-	CONSTRAINT stated_pk PRIMARY KEY(LID,DocID)
+	CONSTRAINT stated_fk2 FOREIGN KEY (docID) REFERENCES Document(docID),
+	CONSTRAINT stated_pk PRIMARY KEY(LID,docID)
 );
 CREATE TABLE DocPossesses (
 	DAID		INTEGER,
-	DocID		INTEGER,
+	docID		INTEGER,
 	CONSTRAINT docPossesses_fk1 FOREIGN KEY (DAID) REFERENCES DocAttribute(DAID),
-	CONSTRAINT docPossesses_fk2 FOREIGN KEY (DocID) REFERENCES Document(docID),
-	CONSTRAINT docPossesses_pk PRIMARY KEY(DAID,DocID)
+	CONSTRAINT docPossesses_fk2 FOREIGN KEY (docID) REFERENCES Document(docID),
+	CONSTRAINT docPossesses_pk PRIMARY KEY(DAID,docID)
 );
 CREATE TABLE RevPossesses (
-	Rname 		VARCHAR2(50),
-	DocID		INTEGER,
-	CONSTRAINT revPossesses_fk1 FOREIGN KEY (Rname) REFERENCES RevAttribute(Rname),
-	CONSTRAINT revPossesses_fk2 FOREIGN KEY (DocID) REFERENCES Document(docID),
-	CONSTRAINT revPossesses_pk PRIMARY KEY(Rname,DocID)
+	RAID 		INTEGER,
+	revID		INTEGER,
+	CONSTRAINT revPossesses_fk1 FOREIGN KEY (RAID) REFERENCES RevAttribute(RAID),
+	CONSTRAINT revPossesses_fk2 FOREIGN KEY (revID) REFERENCES Revision(revID),
+	CONSTRAINT revPossesses_pk PRIMARY KEY(revID,RAID)
 );
 CREATE TABLE Belongs (
 	WID		INTEGER,
@@ -122,7 +126,7 @@ CREATE TABLE Request (
 	CID			INTEGER,
 	SID			INTEGER,
 	propose_date	DATE NOT NULL,
-	CONSTRAINT request_fk1 FOREIGN KEY (docID) REFERENCES Document(DocID),
+	CONSTRAINT request_fk1 FOREIGN KEY (docID) REFERENCES Document(docID),
 	CONSTRAINT request_fk2 FOREIGN KEY (CID) REFERENCES Company(CID),
 	CONSTRAINT request_fk3 FOREIGN KEY (SID) REFERENCES Status(SID),
 	CONSTRAINT request_pk PRIMARY KEY(docID)
@@ -131,7 +135,7 @@ CREATE TABLE ProjectRole (
 	docID		INTEGER,
 	WID		INTEGER,
 	PRname		VARCHAR2(50),
-	CONSTRAINT projectRole_fk1 FOREIGN KEY (docID) REFERENCES Document(DocID),
+	CONSTRAINT projectRole_fk1 FOREIGN KEY (docID) REFERENCES Document(docID),
 	CONSTRAINT projectRole_fk2 FOREIGN KEY (WID) REFERENCES Worker(WID),
 	CONSTRAINT projectRole_pk PRIMARY KEY(docID,WID)
 	
