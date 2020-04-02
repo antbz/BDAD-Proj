@@ -22,17 +22,17 @@ DROP TABLE IF EXISTS Status; --NOVO! ADICIONAR NOS PONTOS ANTERIORES
 
 CREATE TABLE Company (
 	CID		INTEGER,
-	Cname 		VARCHAR2(50),
+	Cname 		TEXT,
 	NIF		INTEGER,
 	address		TEXT,
 	CONSTRAINT company_pk PRIMARY KEY (CID)
 );
 CREATE TABLE Document (
 	docID		INTEGER PRIMARY KEY,
-	dNAME		VARCHAR2(50) NOT NULL,
+	dNAME		TEXT NOT NULL,
 	date_ini	DATE,
 	date_fin	DATE,
-	type		VARCHAR2(50),
+	type		TEXT,
 	ownerID		INTEGER,
 	CONSTRAINT document_type_fk FOREIGN KEY (type) REFERENCES Type(TID),
 	CONSTRAINT document_owner_fk FOREIGN KEY (ownerID) REFERENCES Worker(WID),
@@ -40,13 +40,13 @@ CREATE TABLE Document (
 );
 CREATE TABLE Language (
 	LID			INTEGER,
-	Lname		VARCHAR2(50),
+	Lname		TEXT,
 	CONSTRAINT language_pk PRIMARY KEY (LID)
 );
 CREATE TABLE File (
 	FID			INTEGER,
 	docID		INTEGER,
-	Fname		VARCHAR2(50),
+	Fname		TEXT,
 	size		INTEGER,
 	extension	TEXT,
 	CONSTRAINT file_pk PRIMARY KEY (FID), 
@@ -61,7 +61,7 @@ CREATE TABLE DocAttribute (
 );
 CREATE TABLE Type (
 	TID			INTEGER,
-	Tname		VARCHAR2(50),
+	Tname		TEXT,
 	last_mod_date	DATE,
 	status		TEXT,
 	remarks		TEXT,
@@ -78,11 +78,12 @@ CREATE TABLE CompanyRole (
 );
 CREATE TABLE Revision (
 	docID		INTEGER,
-	revID		INTEGER,	
+	revID		INTEGER PRIMARY KEY AUTOINCREMENT,
+	authorID	INTEGER,
 	version		TEXT,
 	date		DATE,
-	CONSTRAINT revision_fk FOREIGN KEY (docID) REFERENCES Document(docID),
-	CONSTRAINT revision_pk PRIMARY KEY (revID)
+	CONSTRAINT revision_author_fk FOREIGN KEY (authorID) REFERENCES Worker(WID),
+	CONSTRAINT revision_doc_fk FOREIGN KEY (docID) REFERENCES Document(docID)
 );
 CREATE TABLE RevisionAttribute (
 	RAID		INTEGER,
@@ -107,7 +108,7 @@ CREATE TABLE DocPossesses (
 CREATE TABLE RevPossesses (
 	RAID 		INTEGER,
 	revID		INTEGER,
-	CONSTRAINT revPossesses_fk1 FOREIGN KEY (RAID) REFERENCES RevAttribute(RAID),
+	CONSTRAINT revPossesses_fk1 FOREIGN KEY (RAID) REFERENCES RevisionAttribute(RAID),
 	CONSTRAINT revPossesses_fk2 FOREIGN KEY (revID) REFERENCES Revision(revID),
 	CONSTRAINT revPossesses_pk PRIMARY KEY(revID,RAID)
 );
@@ -137,7 +138,7 @@ CREATE TABLE Request (
 );
 CREATE TABLE ProjectRole (
 	PRID	INTEGER,
-	PRname		VARCHAR2(50),
+	PRname		TEXT,
 	CONSTRAINT projectRole_pk PRIMARY KEY(PRID)
 );
 CREATE TABLE DocumentRoleWorker (
@@ -151,22 +152,22 @@ CREATE TABLE DocumentRoleWorker (
 CREATE TABLE CheckOut (
 	revID		INTEGER,
 	WID		INTEGER,
-	COID		INTEGER,
+	-- COID		INTEGER,
 	COdate		DATE NOT NULL,
 	CONSTRAINT checkOut_fk1 FOREIGN KEY (revID) REFERENCES Revision(revID),
 	CONSTRAINT checkOut_fk2 FOREIGN KEY (WID) REFERENCES Worker(WID),
-	CONSTRAINT checkOut_pk PRIMARY KEY(revID,WID)
+	CONSTRAINT checkOut_pk PRIMARY KEY(revID)
 );
-CREATE TABLE CheckIn (
-	revID		INTEGER,
-	WID		INTEGER,
-	CIID		INTEGER,
-	CIdate		DATE NOT NULL,
-	remarks		TEXT,
-	CONSTRAINT checkIn_fk1 FOREIGN KEY (revID) REFERENCES Revision(revID),
-	CONSTRAINT checkIn_fk2 FOREIGN KEY (WID) REFERENCES Worker(WID),
-	CONSTRAINT checkIn_pk PRIMARY KEY(revID,WID)
-);
+-- CREATE TABLE CheckIn (
+-- 	revID		INTEGER,
+-- 	WID		INTEGER,
+-- 	CIID		INTEGER,
+-- 	CIdate		DATE NOT NULL,
+-- 	remarks		TEXT,
+-- 	CONSTRAINT checkIn_fk1 FOREIGN KEY (revID) REFERENCES Revision(revID),
+-- 	CONSTRAINT checkIn_fk2 FOREIGN KEY (WID) REFERENCES Worker(WID),
+-- 	CONSTRAINT checkIn_pk PRIMARY KEY(revID,WID)
+-- );
 CREATE TABLE Status (
 	SID		INTEGER,
 	sDescription	TEXT,

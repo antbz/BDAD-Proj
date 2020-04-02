@@ -1,4 +1,4 @@
 -- SQLite
-SELECT Belongs.WID, CRname
-FROM Belongs, CompanyRole 
-WHERE Belongs.CRID = CompanyRole.CRID;
+SELECT Belongs.WID, CRname, DocumentRoleWorker.PRID
+FROM Belongs, CompanyRole, DocumentRoleWorker
+WHERE DocumentRoleWorker.docID = 5 AND DocumentRoleWorker.WID = Belongs.WID AND Belongs.CRID = CompanyRole.CRID;
