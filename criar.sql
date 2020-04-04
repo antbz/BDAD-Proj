@@ -46,7 +46,7 @@ CREATE TABLE File (
 	FID			INTEGER,
 	docID		INTEGER NOT NULL,
 	Fname		TEXT UNIQUE NOT NULL,
-	size		INTEGER,
+	size		INTEGER NOT NULL,
 	extension	TEXT,
 	CONSTRAINT file_pk PRIMARY KEY (FID), 
 	CONSTRAINT file_doc_fk FOREIGN KEY (docID) REFERENCES Document(docID) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -64,6 +64,7 @@ CREATE TABLE Type (
 	last_mod_date	DATE,
 	status		INTEGER NOT NULL,
 	remarks		TEXT UNIQUE NOT NULL,
+	CONSTRAINT status_bool CHECK (status=0 OR status=1)
 	CONSTRAINT type_pk PRIMARY KEY (TID)
 );
 CREATE TABLE Worker (
