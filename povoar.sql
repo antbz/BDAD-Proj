@@ -53,11 +53,11 @@ INSERT INTO Belongs VALUES (10, 2);
 INSERT INTO Belongs VALUES (11, 2);
 INSERT INTO Belongs VALUES (12, 2);
 
-INSERT INTO Type (Tname, status, remarks) VALUES ('Financial Evaluation', 'Active', 'Financial report determining overall financial health and stability.');
-INSERT INTO Type (Tname, status, remarks) VALUES ('Technical Mockup', 'Active', 'Technical mockup of a product or component by specefication.');
-INSERT INTO Type (Tname, status, remarks, last_mod_date) VALUES ('Tax Evasion Aid', 'Inactive', 'Legal advice on how to defraud the state of tax-income for maximum profit.', '2020-3-18');
-INSERT INTO Type (Tname, status, remarks) VALUES ('Market Study', 'Active', 'Data analysis insight on market performance of a product.');
-INSERT INTO Type (Tname, status, remarks) VALUES ('Digital Image Design', 'Active', 'Personalized branding and digital imagery for your brand.');
+INSERT INTO Type (Tname, status, remarks) VALUES ('Financial Evaluation', 1, 'Financial report determining overall financial health and stability.');
+INSERT INTO Type (Tname, status, remarks) VALUES ('Technical Mockup', 1, 'Technical mockup of a product or component by specefication.');
+INSERT INTO Type (Tname, status, remarks, last_mod_date) VALUES ('Tax Evasion Aid', 0, 'Legal advice on how to defraud the state of tax-income for maximum profit.', '2020-3-18');
+INSERT INTO Type (Tname, status, remarks) VALUES ('Market Study', 1, 'Data analysis insight on market performance of a product.');
+INSERT INTO Type (Tname, status, remarks) VALUES ('Digital Image Design', 1, 'Personalized branding and digital imagery for your brand.');
 
 INSERT INTO Modified VALUES (3, 10);
 
