@@ -65,7 +65,7 @@ CREATE TABLE Type (
 	status		INTEGER NOT NULL,
 	remarks		TEXT UNIQUE NOT NULL,
 	CONSTRAINT type_pk PRIMARY KEY (TID),
-	CHECK (status=0 OR status=1)
+	CONSTRAINT status_bool CHECK (status=0 OR status=1)
 );
 CREATE TABLE Worker (
 	WID			INTEGER PRIMARY KEY,
