@@ -1,0 +1,1 @@
+-- Só deixar um worker criar uma nova revisão se tiver feito da última revisão anteriormente

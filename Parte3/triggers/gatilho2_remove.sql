@@ -1,0 +1,1 @@
+-- Ao alterar Status ou Remarks de Type -> atualizar last_mod_date
