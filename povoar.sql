@@ -65,6 +65,7 @@ INSERT INTO Status (sDescription) VALUES ('On-going');
 INSERT INTO Status (sDescription) VALUES ('Complete');
 INSERT INTO Status (sDescription) VALUES ('Delayed');
 INSERT INTO Status (sDescription) VALUES ('In review');
+INSERT INTO Status (sDescription) VALUES ('Pending');
 
 INSERT INTO DocAttribute (DAname, DAvalue) VALUES ('Under NDA', 'All work developed under this document is under a Non-Disclosure Agreement.');
 INSERT INTO DocAttribute (DAname, DAvalue) VALUES ('Time Critical', 'Document is time critical, delays should be avoided at all costs');
