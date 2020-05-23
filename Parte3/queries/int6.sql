@@ -1,5 +1,9 @@
 -- Que trabalhadores estão envolvidos em todos os Documents?
 
+.mode	columns
+.headers on
+.nullvalue NULL
+
 SELECT Wname 
 FROM ( 
     SELECT  WID, 

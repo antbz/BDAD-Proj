@@ -1,5 +1,9 @@
 -- Quantas revisões foram feitas aos documento de cada companhia ?
 
+.mode	columns
+.headers	on
+.nullvalue	NULL
+
 SELECT cName, count(revID) 
 FROM Revision 
 JOIN (

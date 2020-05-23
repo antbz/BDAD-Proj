@@ -1,5 +1,9 @@
 -- Qual foi o trabalhador com mais checkouts? (sem usar MAX)
 
+.mode	columns
+.headers	on
+.nullvalue	NULL
+
 WITH nCOTable AS (
     SELECT Wname, count(WID) AS nCO 
     FROM (   CheckOut 
