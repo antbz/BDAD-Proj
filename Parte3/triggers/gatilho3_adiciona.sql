@@ -19,5 +19,5 @@ WHEN (
 	)
        )
 BEGIN
-SELECT RAISE(IGNORE);
+SELECT RAISE(ROLLBACK, 'Cannot create revision without a checkout');
 END;
