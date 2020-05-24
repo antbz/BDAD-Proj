@@ -14,7 +14,6 @@ JOIN CompanyRole using(CRID)
 GROUP BY Tname,CRname)
 
 SELECT Tname,CRname,n FROM nTable  
-WHERE n NOT IN (
-SELECT A.n FROM nTable as A, nTable as B 
-WHERE A.n < B.n 
-GROUP BY A.Tname);
+WHERE (Tname,CRname,n) NOT IN (
+SELECT A.Tname,A.CRname,A.n FROM nTable as A, nTable as B 
+WHERE A.n < B.n AND A.Tname=B.Tname);
