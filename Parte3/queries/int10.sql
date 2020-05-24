@@ -1,5 +1,9 @@
 -- Quais são os pares de trabalhadores que trabalharam no mesmo documento?
 
+.mode	columns
+.headers	on
+.nullvalue	NULL
+
 WITH Names AS (
     SELECT dNAME, Wname 
     FROM Document 

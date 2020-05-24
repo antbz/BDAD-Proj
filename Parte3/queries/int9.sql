@@ -1,5 +1,9 @@
 -- Que company roles estão mais vezes associados a cada tipo de Documento?
 
+.mode	columns
+.headers	on
+.nullvalue	NULL
+
 WITH nTable AS (
 SELECT Tname, CRname, count(*) AS n 
 FROM Document 

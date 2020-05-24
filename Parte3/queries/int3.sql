@@ -1,6 +1,10 @@
 -- Número ordenado de checkOuts efetuados por cada trabalhador no documento
 -- da companhia 'Super Bock Group'?
 
+.mode	columns
+.headers	on
+.nullvalue	NULL
+
 SELECT Wname, count(WID) AS maxCO 
 FROM (   Revision 
     JOIN Request using(docID) 
