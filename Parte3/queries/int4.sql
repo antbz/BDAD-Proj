@@ -6,4 +6,4 @@
 
 SELECT count(docID)
 FROM File
-WHERE Fname LIKE '%.pdf'
+WHERE Fname LIKE '%.pdf';
